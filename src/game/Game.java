@@ -54,6 +54,9 @@ public class Game implements Runnable {
 			fps = settings.fps;
 		}
 		
+		assets = new Assets();
+		fonts = new Fonts(this);
+		
 		sceneManager = new SceneManager(this);
 		
 		keyboardInput = new KeyboardInput(this);
@@ -62,9 +65,6 @@ public class Game implements Runnable {
 		display.getFrame().addKeyListener(keyboardInput);
 		display.getCanvas().addMouseListener(mouseInput);
 		display.getCanvas().addMouseMotionListener(mouseInput);
-		
-		assets = new Assets();
-		fonts = new Fonts(this);
 	}
 	
 	public void run() {

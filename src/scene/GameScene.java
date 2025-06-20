@@ -5,11 +5,18 @@ import java.awt.Graphics;
 
 import audio.Song;
 import game.Game;
+import gfx.Animation;
 
 public class GameScene extends Scene {
-
+	
+	private Animation anim;
+	
 	public GameScene(Game game, int id) {
 		super(game, id);
+		
+		anim = new Animation(game, 600, 400, 2, true, game.getAssets().anim1);
+		
+		anim.play();
 	}
 	
 	public void render(Graphics g) {
@@ -22,18 +29,23 @@ public class GameScene extends Scene {
 			g.drawString("Now Playing: " + Song.getFilename(), 400, 500);
 			g.drawString("Press BACKSPACE to stop.", 400, 530);
 		}
+		
+		anim.render(g);
 	}
 	
 	public void tick() {
 		if (game.getMouse().leftMouse) {
 			System.out.println("Pressing the left mouse?!?");
 		}
+		
 		if (game.getKeyboard().playsong && !Song.isStarted()) {
 			Song.playSong("/songs/retrofuture.wav");
 		}
 		if (game.getKeyboard().stopsong && Song.isPlaying()) {
 			Song.stopCurrentSong();
 		}
+		
+		anim.tick();
 	}
 
 }
