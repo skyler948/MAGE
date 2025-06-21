@@ -17,6 +17,8 @@ public class GameScene extends Scene {
 		anim = new Animation(game, 600, 400, 2, true, game.getAssets().anim1);
 		
 		anim.play();
+		
+		game.getKeyboard().startRecordingInputs();
 	}
 	
 	public void render(Graphics g) {

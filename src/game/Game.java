@@ -57,10 +57,10 @@ public class Game implements Runnable {
 		assets = new Assets();
 		fonts = new Fonts(this);
 		
-		sceneManager = new SceneManager(this);
-		
 		keyboardInput = new KeyboardInput(this);
 		mouseInput = new MouseInput(this);
+		
+		sceneManager = new SceneManager(this);
 		
 		display.getFrame().addKeyListener(keyboardInput);
 		display.getCanvas().addMouseListener(mouseInput);

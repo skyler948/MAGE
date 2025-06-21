@@ -18,7 +18,7 @@ public class KeyboardInput implements KeyListener {
 	public boolean playsong, stopsong;
 	
 	private String input = "";
-	private boolean recording = true;
+	private boolean recording = false;
 	
 	public KeyboardInput(Game game) {
 		this.game = game;
