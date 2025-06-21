@@ -23,12 +23,14 @@ public class GameScene extends Scene {
 		g.drawImage(game.getAssets().img1, 100, 80, null);
 		
 		g.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		g.drawString("Press SPACE to play a song :3", 300, 300);
+		g.drawString("Press HOME to play a song :3", 300, 300);
 		
 		if (Song.isPlaying()) {
 			g.drawString("Now Playing: " + Song.getFilename(), 400, 500);
-			g.drawString("Press BACKSPACE to stop.", 400, 530);
+			g.drawString("Press END to stop.", 400, 530);
 		}
+		
+		g.drawString("Typed String (Enter to stop): " + game.getKeyboard().getInputs(), 20, 600);
 		
 		anim.render(g);
 	}

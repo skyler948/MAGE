@@ -11,9 +11,14 @@ public class KeyboardInput implements KeyListener {
 	private Game game;
 	
 	public boolean esc;
+	private boolean endrec;
+	
 	public boolean right, up, down, left;
 	
 	public boolean playsong, stopsong;
+	
+	private String input = "";
+	private boolean recording = true;
 	
 	public KeyboardInput(Game game) {
 		this.game = game;
@@ -23,21 +28,43 @@ public class KeyboardInput implements KeyListener {
 	
 	public void tick() {
 		esc = keys[KeyEvent.VK_ESCAPE];
+		endrec = keys[KeyEvent.VK_ENTER];
 		
 		right = keys[game.getSettings().right];
 		down = keys[game.getSettings().down];
 		up = keys[game.getSettings().up];
 		left = keys[game.getSettings().left];
 		
-		playsong = keys[KeyEvent.VK_SPACE];
-		stopsong = keys[KeyEvent.VK_BACK_SPACE];
+		playsong = keys[KeyEvent.VK_HOME];
+		stopsong = keys[KeyEvent.VK_END];
 		
 		if (esc) System.exit(0);
+		
+		if (endrec) stopRecordingInputs();
 	}
 	
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()] = true;
 		//System.out.println(e.getKeyCode());
+		
+		if (recording) {
+			// Letters
+			if (e.getKeyCode() >= 65 && e.getKeyCode() <= 90) {
+				input = input + (e.getKeyChar() + "");
+			}
+			// Numbers
+			if (e.getKeyCode() >= 48 && e.getKeyCode() <= 57) {
+				input = input + (e.getKeyChar() + "");
+			}
+			// Space
+			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+				input = input + " ";
+			}
+			// Backspace
+			if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE && input.length() > 0) {
+				input = input.substring(0, input.length() - 1);
+			}
+		}
 	}
 	
 	public void keyReleased(KeyEvent e) {
@@ -48,6 +75,22 @@ public class KeyboardInput implements KeyListener {
 	
 	public Game getGame() {
 		return game;
+	}
+	
+	public void startRecordingInputs() {
+		recording = true;
+	}
+	
+	public void stopRecordingInputs() {
+		recording = false;
+	}
+	
+	public String getInputs() {
+		return input;
+	}
+	
+	public void resetInputs() {
+		input = "";
 	}
 
 }
