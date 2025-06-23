@@ -6,10 +6,12 @@ import java.awt.Graphics;
 import audio.Song;
 import game.Game;
 import gfx.Animation;
+import obj.ExampleObject;
 
 public class GameScene extends Scene {
 	
 	private Animation anim;
+	private ExampleObject obj;
 	
 	public GameScene(Game game, int id) {
 		super(game, id);
@@ -19,10 +21,12 @@ public class GameScene extends Scene {
 		anim.play();
 		
 		game.getKeyboard().startRecordingInputs();
+		
+		obj = new ExampleObject(game, 100, 80, game.getAssets().defaultWidth, game.getAssets().defaultHeight, game.getAssets().img1);
 	}
 	
 	public void render(Graphics g) {
-		g.drawImage(game.getAssets().img1, 100, 80, null);
+		obj.render(g);
 		
 		g.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		g.drawString("Press HOME to play a song :3", 300, 300);
@@ -38,6 +42,8 @@ public class GameScene extends Scene {
 	}
 	
 	public void tick() {
+		obj.tick();
+		
 		if (game.getMouse().leftMouse) {
 			System.out.println("Pressing the left mouse?!?");
 		}
