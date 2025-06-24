@@ -48,13 +48,17 @@ public class KeyboardInput implements KeyListener {
 		//System.out.println(e.getKeyCode());
 		
 		if (recording) {
-			// Letters
-			if (e.getKeyCode() >= 65 && e.getKeyCode() <= 90) {
+			// Letters (+ others)
+			if (e.getKeyCode() >= 65 && e.getKeyCode() <= 92) {
 				input = input + (e.getKeyChar() + "");
 			}
-			// Numbers
-			if (e.getKeyCode() >= 48 && e.getKeyCode() <= 57) {
+			// Numbers (+ others)
+			if (e.getKeyCode() >= 44 && e.getKeyCode() <= 59) {
 				input = input + (e.getKeyChar() + "");
+			}
+			// More other characters
+			if (e.getKeyCode() == 222 || e.getKeyCode() == 61) {
+                input = input + (e.getKeyChar() + "");
 			}
 			// Space
 			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
