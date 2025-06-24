@@ -1,5 +1,6 @@
 package obj;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -13,10 +14,15 @@ public class ExampleObject extends TexturedObject {
 	
 	public void render(Graphics g) {
 		g.drawImage(texture, x, y, null);
+		// Display hitbox
+		g.setColor(Color.red);
+		g.drawRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
+		g.setColor(Color.white);
 	}
 	
 	public void tick() {
 		x++;
+		updateHitbox();
 	}
 
 }
