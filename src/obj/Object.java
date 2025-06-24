@@ -28,6 +28,13 @@ public abstract class Object {
 		setHitboxPosition(x, y);
 	}
 	
+	public boolean isOnscreen() {
+		if (x > 0 && x < game.getDisplay().getWidth() + width && y > 0 && y < game.getDisplay().getHeight() + height) {
+			return true;
+		}
+		return false;
+	}
+	
 	public Game getGame() {
 		return game;
 	}

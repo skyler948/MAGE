@@ -1,5 +1,6 @@
 package scene;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
@@ -23,10 +24,16 @@ public class GameScene extends Scene {
 		game.getKeyboard().startRecordingInputs();
 		
 		obj = new ExampleObject(game, 100, 80, game.getAssets().defaultWidth, game.getAssets().defaultHeight, game.getAssets().img1);
+		addTexturedObject(obj);
+		
+		// Shows hitboxes
+		setDebugMode(true);
 	}
 	
 	public void render(Graphics g) {
-		obj.render(g);
+		renderAllObjects(g);
+		
+		g.setColor(Color.white);
 		
 		g.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		g.drawString("Press HOME to play a song :3", 300, 300);
@@ -42,7 +49,7 @@ public class GameScene extends Scene {
 	}
 	
 	public void tick() {
-		obj.tick();
+		tickAllObjects();
 		
 		if (game.getMouse().leftMouse) {
 			System.out.println("Pressing the left mouse?!?");
